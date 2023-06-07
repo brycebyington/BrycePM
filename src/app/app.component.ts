@@ -5,7 +5,7 @@ import { UploadService } from './upload.service';
   selector: 'app-root',
   template: `
     <input type="file" (change)="onFileSelected($event)">
-    <div *ngIf="bpm$">{{ bpm$ }}</div>
+    <div *ngIf="bpm$">BPM: {{ bpm$ }}</div>
   `
 })
 export class AppComponent {
@@ -22,7 +22,7 @@ export class AppComponent {
           this.uploadService.getBpm().subscribe(data => {
             this.bpm$ = data.bpm;
           });
-        }, 5000);
+        }, 0);
       });
     }
   }
