@@ -13,12 +13,15 @@ import { UploadService } from './upload.service';
   </div>
   <div *ngIf="isLoading" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
   <div *ngIf="bpm$" class="alert alert-primary mt-3">BPM: {{ bpm$ }}</div>
+  <div *ngIf="key$" class="alert alert-primary mt-3">Key: {{ key$ }}<span *ngIf="alt_key_info$">, {{alt_key_info$}}</span></div>
 </form>
 
   `
 })
 export class AppComponent {
 
+  alt_key_info$!: string;
+  key$!: string;
   bpm$!: number;
   isLoading: boolean = false;
 
@@ -32,9 +35,11 @@ export class AppComponent {
         setTimeout(() => {
           this.uploadService.getBpm().subscribe(data => {
             this.bpm$ = data.bpm;
+            this.key$ = data.key;
+            this.alt_key_info$ = data.alt_key_info;
             this.isLoading = false;
           });
-        }, 0);
+        }, 1000);
       });
     }
   }

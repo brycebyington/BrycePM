@@ -14,9 +14,11 @@ export class UploadService {
     formData.append('file', file);
 
     return this.http.post('http://147.182.162.101/upload', formData, { responseType: 'text' });
+    //return this.http.post('http://localhost:3000/upload', formData, { responseType: 'text' });
   }
 
   getBpm(): Observable<any> {
     return this.http.get('http://147.182.162.101/bpm');
+    //return this.http.get('http://localhost:3000/bpm');
   }
 }
